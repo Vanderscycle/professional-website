@@ -1,0 +1,16 @@
+
+.table {
+    text-align: center;
+	display: table;   /* Allow the centering to work */
+	margin: 0 auto;
+}
+ul#footer-list {
+	min-width: 696px;
+	list-style: none;
+	padding-top: 20px;
+    
+	}
+ul#footer-list li {
+		display: inline;
+        padding-right: 40px
+	}
