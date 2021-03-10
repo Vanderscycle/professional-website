@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="alert alert-dismissible alert-danger">
+  <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+  <strong>Heads up! </strong>The project page is under construction but each projects are <a href="https://github.com/Vanderscycle" target='_blank' class="alert-link">hosted on my Github repo</a> have a look while I complete the page
+</div>
+<div class='container'>
+  <div class="card text-white bg-dark mb-3 container-card" style="max-width: 20rem;">
+    <div class="card-header" >Project 1</div>
+    <div class="card-body">
+      <h4 class="card-title"><a href="https://github.com/Vanderscycle/lighthouse-data-notes/tree/master/FinalProject/GroceryItemIndexer" target='_blank'>Final project Lighthouse lab</a></h4>
+      <p class="card-text">Project, where I used Scrapy to create a dataset of online flyers and trained two Convoluted Neural Networks (CNN) to extract the merchandise and its price.</p>
+    </div>
+  </div>
+  <div class="card text-white bg-dark mb-3 container-card" style="max-width: 20rem;">
+    <div class="card-header">Project 2</div>
+    <div class="card-body">
+      <h4 class="card-title"><a href="https://github.com/Vanderscycle/tutorials-papers" target='_blank'>Tutorial/papers</a></h4>
+      <p class="card-text">Tutorial that I created when learning new technologies but also wanted to teach my classmates about it.</p>
+    </div>
+  </div>
+  <div class="card text-white bg-dark mb-3 container-card" style="max-width: 20rem;">
+    <div class="card-header">Project 3</div>
+    <div class="card-body">
+      <h4 class="card-title"><a href="https://github.com/Vanderscycle/ramenML" target='_blank'>Ramen Machine Learning 🍜</a></h4>
+      <p class="card-text">Partnered with a classmate and rediscovered Scikit-learn pipelines through a <a href="https://www.kaggle.com/residentmario/ramen-ratings" target='_blank'>ramen dataset</a> hosted on Kaggle.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -31,6 +31,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = env('DEBUG')
 DEBUG = True
+DOCKER_READY = False
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','0.0.0.0','neuraldomains.com','www.neuraldomains.com']
 # ALLOWED_HOSTS = (os.environ["DJANGO_ALLOWED_HOSTS"]).split(" ")
@@ -44,13 +45,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     # from github
     'crispy_forms',
-    # 'whitenoise.runserver_nostatic',
-    # 'django.contrib.staticfiles',
     # custom made
     'pages',
+    'projects',
 ]
 
 MIDDLEWARE = [
@@ -88,8 +89,19 @@ WSGI_APPLICATION = 'neuralDomains.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-
-DATABASES = {
+if not DOCKER_READY:
+    DATABASES = {
+        'default': {
+            'ENGINE': env("SQL_ENGINE"),
+            'NAME': env("SQL_DATABASE"),
+            'USER': env("SQL_USER"),
+            'PASSWORD': env("SQL_PASSWORD"),
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
+else:
+    DATABASES = {
     'default': {
         'ENGINE': env("SQL_ENGINE"),
         'NAME': env("SQL_DATABASE"),
@@ -97,9 +109,9 @@ DATABASES = {
         'PASSWORD': env("SQL_PASSWORD"),
         'HOST': env("SQL_HOST"),
         'PORT': env("SQL_PORT"),
+
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -158,7 +170,9 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
+MEDIAFILES_DIRS = [
+    os.path.join(os.path.dirname(BASE_DIR), "media"),
+]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 print()

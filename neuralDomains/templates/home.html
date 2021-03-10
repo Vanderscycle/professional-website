@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
-
+<!-- {% load static %} -->
 {% block content %}
+<div>
+</div>
 <div class="jumbotron">
-    <h1 class="display-3">Hello, world!</h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-    <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-    <p class="lead">
-      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-    </p>
+  <div class='test'>
+
+    <picture >
+      <img src= "{% static 'images/profilePic.jpeg' %}" alt='Profile picture' class="profile-img"/>
+    </picture>
+
+    <h2>Hello World 👋</h2>
+    <p>Je m'appelle Henri et je suis enchaté de votre visite sur mon porfolio. Ma langue natale est le Français, mais je parle courament l'Anglais car je vis en Colombie-Britannique. </p>
+    <p>I am a junior data-scientist who left his previous employment, as a professional engineer, to follow my passion for datascience and software engineering. What started as a desire to automate repetitive tasks through Excel-VBA led me to reignite my desire to learn everyday and become more a creative person.</p>
+    <p>When not coding or working, I lift kettlebells at the gym, ride my cyclocross bike and spend time with my lovely wife.</p>
   </div>
+</div>
 {% endblock %}

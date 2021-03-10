@@ -1,0 +1,8 @@
+# configure postgres db container
+https://stackoverflow.com/questions/26598738/how-to-create-user-database-in-script-for-docker-postgres
+# make changes to Django when running
+https://stackoverflow.com/questions/30027203/create-django-super-user-in-a-docker-container-without-inputting-password
+# to configure static files whitenoise is the best
+http://whitenoise.evans.io/en/stable/index.html
+# why staticfiles_dit is used
+https://stackoverflow.com/questions/60378319/why-is-collectstatic-not-copying-all-my-directories

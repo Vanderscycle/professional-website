@@ -1,15 +1,16 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,FileResponse
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
-def home_view(request,*args, **kwargs):
+def about_view(request,*args, **kwargs):
     """
     Home page view (not sure what to display yet)
     """
-    return render(request,'home.html',{})
+    return render(request,'about.html',{})
 
 
-def about_view(request,*args, **kwargs):
+def home_view(request,*args, **kwargs):
     """
     page view to display the author of the model
     """
@@ -17,5 +18,5 @@ def about_view(request,*args, **kwargs):
         'author1':'Henri Vandersleyen',
         'github1':'https://github.com/Vanderscycle',
     }
-    return render(request,'about.html',context)
+    return render(request,'home.html',context)
 
