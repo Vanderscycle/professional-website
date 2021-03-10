@@ -1,0 +1,7 @@
+python_environ
+Django
+environ
+gunicorn
+django-crispy-forms
+psycopg2-binary
+whitenoise

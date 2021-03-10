@@ -14,6 +14,7 @@ from pathlib import Path
 
 import environ
 import os
+import json
 env = environ.Env()
 # reading .env file
 env.read_env()
@@ -26,12 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '3mxeh-$ji2o#d_+9rc1=0jrei0lfi4(g!$(&2p*68s!xz@u&(r'
-
+SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = env('DEBUG')
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','0.0.0.0','neuraldomains.com','www.neuraldomains.com']
+# ALLOWED_HOSTS = (os.environ["DJANGO_ALLOWED_HOSTS"]).split(" ")
 
 
 # Application definition
@@ -45,11 +47,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # from github
     'crispy_forms',
+    # 'whitenoise.runserver_nostatic',
+    # 'django.contrib.staticfiles',
     # custom made
     'pages',
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -86,12 +91,12 @@ WSGI_APPLICATION = 'neuralDomains.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'neuraldomains',
-        'USER': 'root',
-        'PASSWORD': env('POSTGRES_ADMIN_SECRET'),
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': env("SQL_ENGINE"),
+        'NAME': env("SQL_DATABASE"),
+        'USER': env("SQL_USER"),
+        'PASSWORD': env("SQL_PASSWORD"),
+        'HOST': env("SQL_HOST"),
+        'PORT': env("SQL_PORT"),
     }
 }
 
@@ -131,15 +136,29 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+# BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# if DEBUG:
+#     STATICFILES_DIRS = [
+#         os.path.join(BASE_DIR, 'static')
+#     ]
+# else:
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATIC_URL = '/static/'
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "collected_static")
+# TEMPLATE_DIRS = (
+#     os.path.join(BASE_DIR,  'templates'),
+#     # Add to this list all the locations containing your static files 
+# )
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+print()

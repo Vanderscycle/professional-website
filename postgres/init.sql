@@ -1,0 +1,4 @@
+CREATE USER root WITH PASSWORD 'Vand^2VictoDataEngineerRoot';
+ALTER USER root WITH SUPERUSER;
+CREATE DATABASE neuraldomains;
+GRANT ALL PRIVILEGES ON DATABASE neuraldomains TO root;

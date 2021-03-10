@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  django_gunicorn:
+    volumes:
+      - static:/static
+    env_file:
+      - ./neuralDomains/neuralDomains/.env
+    build:
+      context: ./neuralDomains
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres_db    
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - static:/collected_static
+    ports:
+      - "80:80"
+    depends_on:
+      - django_gunicorn
+
+  postgres_db:
+    build:
+      context: ./postgres
+      dockerfile: db.Dockerfile
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+    #   # - "POSTGRES_USER=${SQL_USER}"
+    #   # - "POSTGRES_PASSWORD=${SQL_PASSWORD}"
+    #   # - "POSTGRES_DB=neuraldomains"
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=test
+      # - POSTGRES_DB=neuraldomains
+
+volumes:
+  static:
+  postgres_data:
