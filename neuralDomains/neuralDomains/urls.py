@@ -22,11 +22,14 @@ from projects.views import (
     )
 from pages.views import (
         home_view,
-        about_view
+        resume_view,
+        pdf_view
     )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
     path('projects/', project_view, name='projects'),
+    path('resume/', resume_view, name='resume'),
+    path('downloadcv/', pdf_view, name='download'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

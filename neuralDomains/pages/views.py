@@ -1,14 +1,24 @@
 from django.shortcuts import render
-from django.http import HttpResponse,FileResponse
-from django.core.files.storage import FileSystemStorage
+from django.http import FileResponse, Http404
+
+def pdf_view(request):
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    coverLetterFilePath = os.path.join(BASE_DIR,'media/')
+    try:
+        return FileResponse(open(coverLetterFilePath + 'HenriVandersleyenCV.pdf', 'rb'), content_type='application/pdf')
+    except FileNotFoundError:
+        raise Http404()
+
+from pathlib import Path
+import os
 
 # Create your views here.
-def about_view(request,*args, **kwargs):
-    """
-    Home page view (not sure what to display yet)
-    """
-    return render(request,'about.html',{})
+def resume_view(request,*args, **kwargs):
 
+    context = {
+
+    }
+    return render(request,'resume.html',context)
 
 def home_view(request,*args, **kwargs):
     """

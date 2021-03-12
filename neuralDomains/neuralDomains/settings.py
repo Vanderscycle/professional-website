@@ -33,7 +33,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
 DOCKER_READY = False
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','0.0.0.0','neuraldomains.com','www.neuraldomains.com']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','0.0.0.0','neuraldomains.com','www.neuraldomains.com', '172.105.7.38']
 # ALLOWED_HOSTS = (os.environ["DJANGO_ALLOWED_HOSTS"]).split(" ")
 
 
@@ -164,8 +164,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #     # Add to this list all the locations containing your static files 
 # )
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
+    os.path.join(BASE_DIR, "static")
 ]
 
 MEDIA_URL = '/media/'

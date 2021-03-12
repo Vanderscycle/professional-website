@@ -1,5 +1,7 @@
 {% url 'home' as home_url %}
 {% url 'projects' as project_url %}
+{% url 'resume' as resume_url %}
+{% url 'download' as downloadcv_url %}
 
 
 <!--https://tekshinobi.com/setting-active-navbar-link-in-django-template/-->
@@ -11,12 +13,18 @@
         <li class='nav-item {if request.path == home_url %} active'>
             <a class='navbar-brand' href='{{home_url}}'>Home</a>
         </li>
-        <li class='nav-item {if request.path == about_url %} active'>
+        <li class='nav-item {if request.path == project_url %} active'>
             <a class='navbar-brand' href='{{project_url}}'>Projects</a>
         </li>
-        <li class='nav-item '>
-            <a class='navbar-brand' href='media/HenriVandersleyenCV.pdf' download >Resume</a>
+        <li class='nav-item {if request.path == resume_url %} active'>
+            <a class='navbar-brand' href='{{resume_url}}'>Resume</a>
         </li>
+        <li class='nav-item {if request.path == downloadcv_url %} active'>
+            <a class='navbar-brand' href='{{downloadcv_url}}'>Download Resume</a>
+        </li>
+        <!-- <li class='nav-item '>
+            <a class='navbar-brand' href='media/HenriVandersleyenCV.pdf' download >Download Resume</a>
+        </li> -->
     </ul>
 
 </nav>
