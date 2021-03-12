@@ -5,3 +5,4 @@ gunicorn
 django-crispy-forms
 psycopg2-binary
 whitenoise
+python-dotenv

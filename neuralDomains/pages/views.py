@@ -1,22 +1,15 @@
 from django.shortcuts import render
 from django.http import FileResponse, Http404
-
-def pdf_view(request):
-    BASE_DIR = Path(__file__).resolve().parent.parent
-    coverLetterFilePath = os.path.join(BASE_DIR,'media/')
-    try:
-        return FileResponse(open(coverLetterFilePath + 'HenriVandersleyenCV.pdf', 'rb'), content_type='application/pdf')
-    except FileNotFoundError:
-        raise Http404()
+from dotenv import load_dotenv
 
 from pathlib import Path
 import os
 
 # Create your views here.
 def resume_view(request,*args, **kwargs):
-
+    load_dotenv()
     context = {
-
+        'ADOBE_API_KEY' : os.getenv('ADOBE_API_KEY')
     }
     return render(request,'resume.html',context)
 

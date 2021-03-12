@@ -31,9 +31,9 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = env('DEBUG')
 DEBUG = True
-DOCKER_READY = False
+DOCKER_READY = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','0.0.0.0','neuraldomains.com','www.neuraldomains.com', '172.105.7.38']
+ALLOWED_HOSTS = ['django','127.0.0.1','localhost','0.0.0.0','neuraldomains.com','www.neuraldomains.com', '172.105.7.38']
 # ALLOWED_HOSTS = (os.environ["DJANGO_ALLOWED_HOSTS"]).split(" ")
 
 
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # custom made
     'pages',
     'projects',
+    'media',
 ]
 
 MIDDLEWARE = [
@@ -152,17 +153,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# if DEBUG:
-#     STATICFILES_DIRS = [
-#         os.path.join(BASE_DIR, 'static')
-#     ]
-# else:
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# TEMPLATE_DIRS = (
-#     os.path.join(BASE_DIR,  'templates'),
-#     # Add to this list all the locations containing your static files 
-# )
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
